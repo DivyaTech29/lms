@@ -6,23 +6,23 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws --version
       - docker --version
-      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 381492175992.dkr.ecr.us-west-2.amazonaws.com
   build:
     commands:
       - echo Building the backend Docker image...
-      - docker build -t my-backend -f backend/Dockerfile .
-      - docker tag my-backend:latest <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest
+      - docker build -t lms-backend .
+      - docker tag lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Building the frontend Docker image...
-      - docker build -t my-frontend -f frontend/Dockerfile .
-      - docker tag my-frontend:latest <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest
+      - docker build -t lms-frontend .
+      - docker tag lms-frontend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
   post_build:
     commands:
       - echo Pushing the backend Docker image to ECR...
-      - docker push <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest
+      - docker push 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Pushing the frontend Docker image to ECR...
-      - docker push <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest
+      - docker push 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
       - echo Creating imagedefinitions.json file...
-      - printf '[{"name":"my-backend","imageUri":"%s"},{"name":"my-frontend","imageUri":"%s"}]' <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest <aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest > imagedefinitions.json
+      - printf '[{"name":"my-backend","imageUri":"%s"},{"name":"my-frontend","imageUri":"%s"}]' 381492175992.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json

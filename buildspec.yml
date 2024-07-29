@@ -10,10 +10,10 @@ phases:
   build:
     commands:
       - echo Building the backend Docker image...
-      - docker build -t lms-backend .
+      - docker build -t lms-backend -f api/Dockerfile api
       - docker tag lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Building the frontend Docker image...
-      - docker build -t lms-frontend .
+      - docker build -t lms-backend -f webapp/Dockerfile webapp
       - docker tag lms-frontend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
   post_build:
     commands:

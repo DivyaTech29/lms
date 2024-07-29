@@ -10,10 +10,10 @@ phases:
   build:
     commands:
       - echo Building the backend Docker image...
-      - docker build -t lms-backend -f api/Dockerfile api
+      - docker build -t lms-backend -f api/Dockerfile api || { echo 'Backend Docker build failed' ; exit 1; }
       - docker tag lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Building the frontend Docker image...
-      - docker build -t lms-backend -f webapp/Dockerfile webapp
+      - docker build -t lms-frontend -f webapp/Dockerfile webapp || { echo 'Frontend Docker build failed' ; exit 1; }
       - docker tag lms-frontend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
   post_build:
     commands:
@@ -22,7 +22,7 @@ phases:
       - echo Pushing the frontend Docker image to ECR...
       - docker push 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
       - echo Creating imagedefinitions.json file...
-      - printf '[{"name":"my-backend","imageUri":"%s"},{"name":"my-frontend","imageUri":"%s"}]' 381492175992.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest > imagedefinitions.json
+      - printf '[{"name":"my-backend","imageUri":"%s"},{"name":"my-frontend","imageUri":"%s"}]' 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json

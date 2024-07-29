@@ -1,0 +1,10 @@
+[
+  {
+    "name": "my-backend",
+    "imageUri": "<aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest"
+  },
+  {
+    "name": "my-frontend",
+    "imageUri": "<aws_account_id>.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest"
+  }
+]

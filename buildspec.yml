@@ -14,6 +14,7 @@ phases:
       - docker build -t lms-backend .
       - docker tag lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Building the frontend Docker image...
+      - cd ..
       - cd webapp
       - docker build -t lms-frontend .
       - docker tag lms-frontend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest

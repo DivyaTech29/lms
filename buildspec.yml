@@ -10,10 +10,10 @@ phases:
   build:
     commands:
       - echo Building the backend Docker image...
-      - docker build -t lms-backend -f api/Dockerfile api || { echo 'Backend Docker build failed' ; exit 1; }
+      - docker build -t lms-backend -f api/Dockerfile .
       - docker tag lms-backend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest
       - echo Building the frontend Docker image...
-      - docker build -t lms-frontend -f webapp/Dockerfile webapp || { echo 'Frontend Docker build failed' ; exit 1; }
+      - docker build -t lms-frontend -f webapp/Dockerfile .
       - docker tag lms-frontend:latest 381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest
   post_build:
     commands:

@@ -13,4 +13,5 @@ RUN npm run build
 # Expose port
 EXPOSE 8080
 # Start app
-CMD [ "npm", "start" ]
+#CMD [ "npm", "start" ]
+CMD ["node", "build/index.js"]

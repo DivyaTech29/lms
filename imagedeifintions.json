@@ -1,10 +1,14 @@
 [
   {
+    "name": "my-postgres",
+    "imageUri": "381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-postgres:latest"
+  },
+  {
     "name": "my-backend",
-    "imageUri": "381492175992.dkr.ecr.us-west-2.amazonaws.com/my-backend:latest"
+    "imageUri": "381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-backend:latest"
   },
   {
     "name": "my-frontend",
-    "imageUri": "381492175992.dkr.ecr.us-west-2.amazonaws.com/my-frontend:latest"
+    "imageUri": "381492175992.dkr.ecr.us-west-2.amazonaws.com/lms-frontend:latest"
   }
 ]
